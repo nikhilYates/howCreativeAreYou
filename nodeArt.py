@@ -4,7 +4,7 @@ import random
 import numpy as np
 
 
-NODE_COUNT = 1000
+NODE_COUNT = 500
 HEIGHT = 800
 WIDTH = 700
 map = np.zeros((HEIGHT, WIDTH, 3), np.uint8)
