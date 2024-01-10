@@ -1,19 +1,22 @@
 import cv2
 import math
+import time
 import random
 import numpy as np
 
 
-NODE_COUNT = 500
-HEIGHT = 800
-WIDTH = 700
+NODE_COUNT = 100
+HEIGHT = 600
+WIDTH = 1200
 map = np.zeros((HEIGHT, WIDTH, 3), np.uint8)
 
 
 RED = (55,24,227)
+PURPLE = (200, 36, 222)
+BLUE = (244, 44, 32)
 
 class circles:
-    def __init__(self, x, y, next = None, prev = None, color = RED):
+    def __init__(self, x, y, next = None, prev = None, color = BLUE):
         self.x = x
         self.y = y
         self.radius = np.random.randint(1, 3)
@@ -38,7 +41,8 @@ def point_obst_overlap(map, p):
 
 
 def drawLine(p1, p2):
-    cv2.line(map, (p1.x, p1.y), (p2.x, p2.y), RED, 1)
+    cv2.line(map, (p1.x, p1.y), (p2.x, p2.y), BLUE, 1)
+#    cv2.imshow('lineArt', map)
 
 def buildMap():
 
@@ -52,14 +56,18 @@ def buildMap():
     
 
     while len(list_of_points) > 2:
-
+        # cv2.imshow('nodeArt', map)
         node = list_of_points[np.random.randint(0, len(list_of_points)/2)]
         node_two = list_of_points[np.random.randint(len(list_of_points)/2, len(list_of_points))]
         drawLine(node, node_two)
         list_of_points.remove(node)
-
+        # cv2.waitKey(0)
+        # cv2.destroyAllWindows()
 
 
 buildMap()
-cv2.imwrite("neuralNet_red.jpg", map)
+cv2.imwrite('slabz.png', map)
+# cv2.waitKey(0)
+# cv2.destroyAllWindows()
+# cv2.imwrite("neuralNet_red.jpg", map)
 

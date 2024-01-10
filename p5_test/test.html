@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.4.0/p5.js"></script>
+
+    </head>
+    <body>
+        <script>
+            // Particle class
+class Particle {
+    constructor() {
+        this.x = random(width);
+        this.y = random(height);
+        this.velocity = createVector(0, 0);
+    }
+
+    // Check if the mouse is close to the particle
+    interact() {
+        let d = dist(mouseX, mouseY, this.x, this.y);
+        if (d < 50) {
+            // Move particle away from mouse
+            let move = createVector(this.x - mouseX, this.y - mouseY);
+            move.setMag(3);
+            this.velocity.add(move);
+        }
+    }
+
+    // Update particle position
+    update() {
+        this.x += this.velocity.x;
+        this.y += this.velocity.y;
+        this.velocity.mult(0.95); // Dampen the movement
+    }
+
+    // Display the particle
+    show() {
+        fill(0, 0, 255);
+        noStroke();
+        ellipse(this.x, this.y, 10, 10);
+    }
+}
+
+let particles = [];
+
+function setup() {
+    createCanvas(500, 800);
+    // Create particles
+    for (let i = 0; i < 600; i++) {
+        particles.push(new Particle());
+    }
+}
+
+function draw() {
+    background(255);
+    for (let particle of particles) {
+        particle.interact();
+        particle.update();
+        particle.show();
+    }
+}
+
+
+        </script>
+    </body>
+</html>
