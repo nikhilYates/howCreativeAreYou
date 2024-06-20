@@ -34,7 +34,7 @@ def main(image_path, new_width=100):
     return "\n".join(img_ascii)
 
 # Run the program
-ascii_art = main("brainScan.jpg")  # Replace with your image path
+ascii_art = main("heart.jpg")  # Replace with your image path
 print()
 print()
 print()
@@ -43,7 +43,7 @@ print()
 print()
 
 print(ascii_art)
-
+save(ascii_art, "heart.jpg")
 print()
 print()
 print()
